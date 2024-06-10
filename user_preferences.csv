@@ -1,0 +1,21 @@
+_id,userID,hasBarbell,hasDumbbells,hasKettlebell,hasBag,workoutDays
+66623c1664b327d24e15c999,66623c1664b327d24e15c985,False,True,False,True,['Sunday']
+66623c1664b327d24e15c99a,66623c1664b327d24e15c986,True,False,False,False,"['Thursday', 'Friday', 'Tuesday', 'Wednesday', 'Monday', 'Sunday', 'Saturday']"
+66623c1664b327d24e15c99b,66623c1664b327d24e15c987,False,False,True,True,"['Friday', 'Monday', 'Thursday', 'Saturday', 'Wednesday', 'Tuesday']"
+66623c1664b327d24e15c99c,66623c1664b327d24e15c988,False,False,False,False,['Wednesday']
+66623c1664b327d24e15c99d,66623c1664b327d24e15c989,True,True,True,False,"['Thursday', 'Monday', 'Sunday', 'Tuesday']"
+66623c1664b327d24e15c99e,66623c1664b327d24e15c98a,True,False,False,True,"['Sunday', 'Friday', 'Wednesday', 'Tuesday']"
+66623c1664b327d24e15c99f,66623c1664b327d24e15c98b,False,False,False,True,"['Thursday', 'Sunday', 'Saturday', 'Friday', 'Wednesday', 'Monday']"
+66623c1664b327d24e15c9a0,66623c1664b327d24e15c98c,True,True,True,True,"['Wednesday', 'Tuesday', 'Thursday', 'Friday', 'Sunday', 'Monday']"
+66623c1664b327d24e15c9a1,66623c1664b327d24e15c98d,True,True,True,False,"['Sunday', 'Thursday']"
+66623c1664b327d24e15c9a2,66623c1664b327d24e15c98e,True,False,True,False,"['Monday', 'Wednesday', 'Tuesday', 'Thursday', 'Friday']"
+66623c1664b327d24e15c9a3,66623c1664b327d24e15c98f,False,False,True,True,"['Saturday', 'Monday', 'Thursday', 'Tuesday', 'Sunday', 'Friday', 'Wednesday']"
+66623c1664b327d24e15c9a4,66623c1664b327d24e15c990,True,True,False,True,"['Saturday', 'Sunday', 'Wednesday', 'Thursday', 'Tuesday', 'Friday']"
+66623c1664b327d24e15c9a5,66623c1664b327d24e15c991,True,True,True,False,['Wednesday']
+66623c1664b327d24e15c9a6,66623c1664b327d24e15c992,False,True,False,True,"['Monday', 'Thursday', 'Friday', 'Sunday']"
+66623c1664b327d24e15c9a7,66623c1664b327d24e15c993,False,False,False,False,"['Sunday', 'Tuesday']"
+66623c1664b327d24e15c9a8,66623c1664b327d24e15c994,False,True,True,False,"['Monday', 'Thursday']"
+66623c1664b327d24e15c9a9,66623c1664b327d24e15c995,True,False,True,False,"['Sunday', 'Saturday', 'Monday']"
+66623c1664b327d24e15c9aa,66623c1664b327d24e15c996,True,True,True,False,"['Saturday', 'Monday', 'Thursday', 'Wednesday', 'Friday', 'Tuesday']"
+66623c1664b327d24e15c9ab,66623c1664b327d24e15c997,False,False,False,True,"['Tuesday', 'Saturday', 'Monday', 'Wednesday', 'Thursday', 'Friday', 'Sunday']"
+66623c1664b327d24e15c9ac,66623c1664b327d24e15c998,True,False,True,False,"['Sunday', 'Thursday']"

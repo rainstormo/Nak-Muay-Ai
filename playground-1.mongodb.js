@@ -1,5 +1,5 @@
-// Use the correct database
+// MongoDB Playground
 use('NakMuay_db');
 
-// Find the preferences for the specific user
-db.UserPreferences.find({ userID: ObjectId("66612a0a2f15fc482efbd7c1") }).pretty();
+// Update all documents where "Dumbbell" is present in the equipmentNeeded array
+db.UserPreferences.find().pretty()

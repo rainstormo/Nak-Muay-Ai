@@ -1,7 +1,7 @@
 from mongoengine import Document, StringField, BooleanField, ListField, ReferenceField, DateTimeField, IntField, connect
 
 # Ensure the database is connected using MongoEngine
-connect(db='NakMuay_db', host='mongodb+srv://muhammadalmaery:muaythai@cluster0.yfhb5od.mongodb.net/NakMuay_db?retryWrites=true&w=majority')
+#connect(db='NakMuay_db', host='mongodb+srv://muhammadalmaery:muaythai@cluster0.yfhb5od.mongodb.net/NakMuay_db?retryWrites=true&w=majority')
 
 class UserProfiles(Document):
     meta = {'collection': 'UserProfiles'}
@@ -49,6 +49,7 @@ class WorkoutList(Document):
     muscleGroups = ListField(StringField())
     level = StringField()
     defaultWeighting = IntField()
+    workoutID = IntField() 
 
 class UserWeightings(Document):
     meta = {'collection': 'UserWeightings'}

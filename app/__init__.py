@@ -1,11 +1,8 @@
-#Initializes the app, sets up configurations and defines the apps structure.
 from flask import Flask
-#Mongoengine maps Python objects with MongoDB documents
 from flask_mongoengine import MongoEngine
-#Authentication
 from flask_jwt_extended import JWTManager
+import logging
 
-# Create a MongoEngine instance
 db = MongoEngine()
 
 def create_app():
@@ -14,11 +11,20 @@ def create_app():
     # Configure MongoDB
     app.config['MONGODB_SETTINGS'] = {
         'db': 'NakMuay_db',
-        'host': 'mongodb+srv://muhammadalmaery:muaythai@cluster0.yfhb5od.mongodb.net/NakMuay_db?retryWrites=true&w=majority'
+        'host': 'mongodb+srv://muhammadalmaery:UJYuhzTLWjTKd7lK@cluster0.yfhb5od.mongodb.net/NakMuay_db?retryWrites=true&w=majority'
     }
     
+    logging.info(f"Connecting to MongoDB at {app.config['MONGODB_SETTINGS']['host']}")
+    logging.info(f"Using database: {app.config['MONGODB_SETTINGS']['db']}")
+
     # Set the JWT secret key
     app.config['JWT_SECRET_KEY'] = 'my_very_secret_key_for_jwt'
+
+    # Configure JWT to store tokens in cookies
+    app.config['JWT_TOKEN_LOCATION'] = ['cookies']
+    app.config['JWT_ACCESS_COOKIE_PATH'] = '/'
+    app.config['JWT_REFRESH_COOKIE_PATH'] = '/'
+    app.config['JWT_COOKIE_CSRF_PROTECT'] = False  # Disable CSRF protection for simplicity
     
     # Initialize JWTManager which will be used for protected routes
     jwt = JWTManager(app)

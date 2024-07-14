@@ -1,3 +1,0 @@
-Code to Log In as the Test User via cmd terminal:
-
-curl -X POST -H "Content-Type: application/json" -d "{\"email\":\"test@example.com\",\"password\":\"testpassword\"}" http://127.0.0.1:5000/login

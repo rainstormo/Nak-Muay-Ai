@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nak Muay Coach - Landing Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        .landing-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        .box-link-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .box-link {
+            background-color: rgba(255, 255, 255, 0.8); /* Lighter background for more contrast */
+            border-radius: 10px;
+            padding: 50px;
+            margin: 20px;
+            width: 200px;
+            height: 200px;
+            text-decoration: none;
+            color: black; /* Darker text color for better readability */
+            font-size: 24px;
+            font-weight: bold; /* Make the text more prominent */
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Add subtle text shadow */
+        }
+
+        .box-link:hover {
+            background-color: rgba(255, 255, 255, 1); /* Slightly darker on hover */
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="landing-container">
+        <a href="/logout" class="logout-link">Log Out</a>
+        <h1>Nak Muay Coach</h1>
+        <div class="box-link-container">
+            <a href="/profile" class="box-link">My Profile</a>
+            <a href="/weekly_plan" class="box-link">My Plan</a>
+            <a href="/training" class="box-link">Begin Training Day</a>
+        </div>
+    </div>
+</body>
+</html>

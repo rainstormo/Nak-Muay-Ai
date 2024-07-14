@@ -1,0 +1,132 @@
+body {
+    font-family: Arial, sans-serif;
+    background: url('/static/background.png') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    color: white;
+}
+
+.container {
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    color: #ffffff;
+    max-width: 400px;
+}
+
+h1 {
+    margin-bottom: 40px;
+    font-size: 64px; /* Make the header larger */
+    color: #00ffcc; /* Change the color of the header */
+    font-family: 'Roboto', sans-serif; /* Use the modern font */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Add a subtle shadow for depth */
+}
+
+
+.login-container, .register-container {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    color: #00ffcc;
+    font-size: 14px;
+}
+
+input[type="email"],
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    font-size: 16px;
+}
+
+input[type="email"]::placeholder,
+input[type="text"]::placeholder,
+input[type="password"]::placeholder {
+    color: #cccccc;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #00ffcc;
+    color: #000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #00cc99;
+}
+
+.login-link, .register-link {
+    display: block;
+    margin-top: 20px;
+    color: #00ffcc;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.login-link:hover, .register-link:hover {
+    text-decoration: underline;
+}
+
+.workout-days {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.workout-days label {
+    flex: 1 0 50%;
+    margin-bottom: 10px;
+    color: #00ffcc;
+}
+
+.logout-link {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: rgba(255, 255, 255, 0.8); /* Match box style */
+    border-radius: 10px;
+    padding: 10px;
+    width: 100px;
+    height: 50px;
+    text-decoration: none;
+    color: black; /* Darker text color for better readability */
+    font-size: 16px;
+    font-weight: bold; /* Make the text more prominent */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Add subtle text shadow */
+}
+
+.logout-link:hover {
+    background-color: rgba(255, 255, 255, 1); /* Slightly darker on hover */
+    transform: scale(1.05);
+}

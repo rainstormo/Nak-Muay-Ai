@@ -1,0 +1,66 @@
+name,description,equipmentNeeded,type,videoLink,muscleGroups,level,defaultWeighting
+Overhead Press,"Strengthens shoulders and triceps, crucial for powerful overhead strikes.",Barbell,Upper Body,https://www.youtube.com/watch?v=ZXpdJOLNoWw&list=PLl-YPRNrgLeW4n2KMYN12Nh3vn_dKd9Zd&index=4,"Shoulders, Triceps",Beginner,5
+Decline Bench Press,"Focuses on the lower chest muscles, enhancing overall chest strength.",Barbell,Upper Body,https://youtu.be/0xRvl4Qv3ZY?si=OnyYojsKkkxPjnko,"Chest, Triceps",Intermediate,3
+Incline Bench Press,"Targets the upper chest and shoulders, providing balanced chest development and strength.",Barbell,Upper Body,https://youtu.be/lJ2o89kcnxY?si=GdTEDDYX6Bs4-sfY,"Chest, Shoulders",Intermediate,4
+Bench Press,"A compound exercise that builds chest, triceps, and shoulder strength. Essential for powerful strikes.",Barbell,Upper Body,https://youtu.be/SCVCLChPQFY?si=VA7S3gspQ3oZAXIh,"Chest, Triceps, Shoulders",Beginner,5
+Dumbbell Row,"Targets upper back and biceps, crucial for strong clinching and pulling motions.",Dumbbells,Upper Body,https://youtu.be/xl1YiqQY2vA?si=P7q410kp46vzyI7O,"Back, Biceps",Intermediate,4
+Barbell Bent Over Row,"Develops overall back strength and thickness, essential for clinch control.",Barbell,Upper Body,https://youtu.be/6FZHJGzMFEc?si=LptApibK0zMBSprP,"Back, Biceps",Beginner,5
+Push-Ups,"Enhances upper body strength and endurance, crucial for powerful strikes and clinch control.",None,Upper Body,https://youtu.be/JyCG_5l3XLk?si=ac9kLKnNjAjQyywR,"Chest, Triceps, Shoulders",Beginner,3
+Goblet Squat,"Improves leg strength and core stability, essential for maintaining balance during kicks.","Dumbbells, Kettlebell",Lower Body,https://youtu.be/3gpXflqRiEc?si=Re2GC0v0Q3gRDSIu,"Quads, Glutes, Core",Beginner,4
+Walking Lunges,"Builds leg strength and endurance, essential for maintaining stability during movement.",None,Lower Body,https://youtu.be/2nk3yjfdGz4?si=BkN9Ly5Tf-gsSWua,"Quads, Glutes",Beginner,3
+Reverse Lunges,"Enhances leg strength and balance, crucial for stable and powerful kicks.",None,Lower Body,https://youtu.be/xrPteyQLGAo?si=jcbbhYKcSSKukaJX,"Quads, Glutes",Beginner,3
+Medicine Ball Slams,"Builds explosive power and endurance, essential for striking power.",Medicine Ball,Full Body,https://youtu.be/QxYhFwMd1Ks?si=eZapTRe6_dTN9FU-,"Shoulders, Core, Legs",Beginner,5
+High Knee Rope,"Enhances coordination and cardiovascular fitness, crucial for stamina.",Jump Rope,Conditioning,https://youtu.be/Wf26oKiPh2I?si=An4MGOCmm4DrMF4V,"Legs, Cardio",Intermediate,4
+Lying Leg Raise,"Strengthens lower abs and hip flexors, crucial for overall core strength.",None,Conditioning,https://youtu.be/x99aCkll-8Y?si=Omi4oEVyXFm95GPV,"Core, Hip Flexors",Beginner,4
+Bicycle Crunch,"Builds overall core strength and endurance, crucial for maintaining balance and power.",None,Conditioning,https://youtu.be/cbKIDZ_XyjY?si=wIawstaOEeqtOz1w,"Core, Obliques",Beginner,3
+Knees,"Enhances close-range striking power and technique, crucial for effective attacks.",Bag,Bag Work,https://youtu.be/XzXUM6i9Qdw?si=T4TLqTDyWD_TnGtK,"Core, Hips",Beginner,5
+Barbell Push Press,Combines leg drive with shoulder press to build explosive upper body strength.,Barbell,Upper Body,https://www.youtube.com/watch?v=HKx22sWywxc&list=PLl-YPRNrgLeW4n2KMYN12Nh3vn_dKd9Zd&index=16,"Shoulders, Triceps, Legs",Intermediate,6
+Wide Grip Pull-Up,"Enhances back and bicep strength, improving pull strength for clinching and defense.",None,Upper Body,https://youtu.be/GRgWPT9XSQQ?si=2c_XEjglhrxuM-NU,"Back, Biceps",Intermediate,5
+Neutral Grip Chin-Up,"Focuses on biceps and upper back, improving grip and pulling power.",None,Upper Body,https://youtu.be/p4eGRI0AJk8?si=k0fs8ib7hRlW2yRc,"Back, Biceps, Forearms",Beginner,5
+Seated Cable Row,"Strengthens mid-back and biceps, improving pulling power and posture.",Gym,Upper Body,https://youtu.be/UCXxvVItLoM?si=Hy0ubNoROWrSoVtC,"Back, Biceps",Intermediate,4
+Face Pulls,"Enhances rear deltoid and upper back strength, promoting shoulder health and stability.",Gym,Upper Body,https://www.youtube.com/shorts/DVxfKB0BnlY,"Shoulders, Upper Back",Intermediate,3
+Farmer’s Walk,"Builds grip strength and overall endurance, essential for maintaining clinch control.","Dumbbells, Kettlebell",Upper Body,https://youtu.be/8OtwXwrJizk?si=0Q0YW1Ef43BvLVhD,"Shoulders, Core",Beginner,2
+Power Cleans,An explosive full-body exercise that develops power and coordination.,Barbell,Full Body,https://youtu.be/O32-Ae8SNIc?si=nWn0laHVazEttiPR,"Legs, Back, Shoulders",Intermediate,6
+Turkish Get-Up,"Combines strength, balance, and coordination, essential for overall functional fitness.",Kettlebell,Full Body,https://youtu.be/-QEE1Q4iW-w?si=kVgEc8lcBL9p2Dyq,"Shoulders, Core, Legs",Advanced,3
+Run,"Builds cardiovascular endurance, crucial for maintaining stamina during fights.",None,Conditioning,None,"Legs, Cardio",Beginner,3
+Hill Run,"Builds leg strength and cardiovascular endurance, crucial for overall stamina.",None,Conditioning,None,"Legs, Cardio",Intermediate,5
+Mountain Climbers,"Builds core strength and cardiovascular endurance, essential for overall fitness.",None,Conditioning,https://youtu.be/ruQ4ZwncXBg?si=oEgg93tb8ckSHCib,"Core, Cardio",Beginner,4
+Cross-Body Mountain Climbers,"Enhances core strength and coordination, crucial for overall fitness.",None,Conditioning,https://youtu.be/luRruRjECm8?si=qp49fZVBkU8PpaIs,"Core, Cardio",Intermediate,4
+Plank,"Builds core strength and stability, crucial for maintaining balance and power.",None,Conditioning,https://youtu.be/EPiXN2bkLoQ?si=Mn0O6YdcqEDiOwWO,"Core, Shoulders",Beginner,5
+Side Plank,"Enhances lateral core strength and stability, essential for maintaining balance and power.",None,Conditioning,https://youtu.be/_R389Jk0tIo?si=uyhYsWOPojtRvUYR,"Core, Shoulders",Intermediate,4
+Splits,"Improves hip flexibility and leg range of motion, essential for high kicks.",None,Flexibility,https://youtu.be/c7y5SDZ3dsc?si=S52cF8__BKVb9c4X,"Hips, Hamstrings",Beginner,4
+Tricep Dips,"Strengthens triceps and chest, important for pushing power and endurance.",Gym,Upper Body,https://youtu.be/SLk3UUV8GuI?si=K_k2Kum4TTWqh4og,"Triceps, Chest",Intermediate,4
+Landmine Press,"Engages shoulders and core, enhancing punching power and stability.",Gym,Upper Body,https://youtu.be/t9GuiNQo1O4?si=YaSOI35CXLQ9vWVb,"Shoulders, Core",Intermediate,3
+Battle Ropes,"Improves upper body endurance and cardiovascular fitness, crucial for sustained striking power.",Gym,Upper Body,https://youtu.be/DfuvSn73Up4?si=WjzqAmP7_LKOlz4b,"Shoulders, Core, Cardio",Advanced,3
+Deadlift,"Strengthens posterior chain, crucial for overall power and explosiveness.",Barbell,Lower Body,https://youtu.be/AweC3UaM14o?si=v6btxjQNnnt_qrKC,"Back, Glutes, Hamstrings",Beginner,6
+Calf Raises,"Strengthens calves, crucial for explosive movements and stability.",Gym,Lower Body,https://youtu.be/g_E7_q1z2bo?si=p4iyeKWer32BYPHL,Calves,Beginner,2
+Hip Thrusts,"Strengthens glutes and hamstrings, essential for powerful kicks.",Barbell,Lower Body,https://youtu.be/EF7jXP17DPE?si=veeD_vZVbsBSn3Pr,"Glutes, Hamstrings",Intermediate,4
+Medicine Ball Throws,"Enhances explosive power and coordination, crucial for powerful strikes.",Medicine Ball,Full Body,https://youtu.be/DttZ5JU-b_U?si=MgbpWmIo_2xuX7St,"Shoulders, Core, Legs",Beginner,4
+Kettlebell Swings,"Improves overall power and cardiovascular endurance, essential for powerful strikes.",Kettlebell,Full Body,https://youtu.be/1cVT3ee9mgU?si=xDyF7CvaMGu1Rje5,"Glutes, Hamstrings, Core",Beginner,5
+Box Jumps,"Builds explosive leg power and coordination, crucial for quick movements and stability.",None,Full Body,https://youtu.be/W5QzqIbEWvk?si=J1Duak4xVYT6LifG,"Quads, Glutes, Calves",Beginner,5
+Sprint Intervals,"Enhances speed and power, improving overall cardiovascular fitness.",None,Conditioning,None,"Legs, Cardio",Intermediate,5
+Jump Rope,"Improves endurance, footwork, and coordination, essential for maintaining high energy levels.",Jump Rope,Conditioning,https://youtu.be/wqN5bRkZPK0?si=YSAY-9diRxmRZ-mO,"Legs, Cardio",Beginner,4
+Burpees,"Full-body exercise that builds strength and cardiovascular endurance, essential for overall fitness.",None,Conditioning,https://youtu.be/auBLPXO8Fww?si=-qRwNyhwIGx7uW8q,"Full Body, Cardio",Beginner,5
+Shoulder Tap Planks,"Improves core stability and coordination, crucial for maintaining balance and power.",None,Conditioning,https://youtu.be/8rgurWd-PB8?si=utmz2bnsqkutpSEG,"Core, Shoulders",Intermediate,4
+Squats,"Basic leg strength exercise, crucial for maintaining stability and power.",None,Conditioning,https://youtu.be/xqvCmoLULNY?si=jrJshCiOKPYMwF0r,"Quads, Glutes",Beginner,5
+Elbows,"Enhances close-range striking power and technique, crucial for effective attacks.",Bag,Bag Work,https://youtu.be/fdsiCeQjHUo?si=4h6MvFqk6rMN59Tq,"Shoulders, Triceps",Beginner,6
+High Kick,"Enhances flexibility, balance, and power in head-level kicks, crucial for effective attacks.",Bag,Bag Work,https://youtu.be/ry6ZC7rC6SM?si=aTkVJAb91CbGo8xO,"Legs, Hips",Intermediate,6
+Low Kick,"Builds power and accuracy in low strikes, crucial for effective attacks.",Bag,Bag Work,https://youtu.be/k4flqVlub6c?si=Dc3HBrJ9LTfOzGDn,"Legs, Hips",Beginner,5
+Punch Combo,"Builds power and speed in punches, essential for effective striking combinations.",Bag,Bag Work,https://youtu.be/PPYsg2QGPuo?si=UsXO6S6R8R5G0RiV,"Shoulders, Triceps, Core",Beginner,6
+Push Kick,"Enhances power and technique in front kicks, crucial for effective attacks and defense.",Bag,Bag Work,https://youtu.be/Gw_Gf9jRvTM?si=YDcMvSgHqEtgPmAx,"Legs, Core",Beginner,5
+Barbell Back Squat,"Builds leg strength and power, crucial for stable and powerful kicks.",Barbell,Lower Body,https://youtu.be/rrJIyZGlK8c?si=nYoWdN4gV7w8Y5Uz,"Quads, Glutes, Hamstrings",Beginner,6
+Front Squat,"Targets quads and core, promoting overall lower body strength and stability.",Barbell,Lower Body,https://youtu.be/CE0uSrr4SYQ?si=wRLUZyrnVOaE-X2s,"Quads, Core",Intermediate,5
+Romanian Deadlift,"Focuses on hamstrings and glutes, improving kicking power and stability.",Barbell,Lower Body,https://youtu.be/GZAKFRNtxLY?si=uF3wOQdxCjbwwF0O,"Hamstrings, Glutes",Intermediate,5
+Sumo Deadlift,"Emphasizes inner thigh and glute strength, enhancing lower body power.",Barbell,Lower Body,https://youtu.be/pfSMst14EFk?si=szMZbxrmrOM4kBJ9,"Inner Thighs, Glutes",Intermediate,5
+Bulgarian Split Squat,"Enhances leg strength and balance, crucial for stable and powerful kicks.",Dumbbells,Lower Body,https://youtu.be/vgn7bSXkgkA?si=5WPB3hiHE5GkD6yM,"Quads, Glutes",Intermediate,5
+Standard Leg Press,"Builds overall leg strength, beneficial for powerful kicks and stability.",Gym,Lower Body,https://youtu.be/sAHWt9b5P9k?si=laARL1HJGkKwVqe8,"Quads, Glutes, Hamstrings",Beginner,4
+Single Leg Press,"Focuses on unilateral leg strength, improving balance and power.",Gym,Lower Body,https://youtu.be/sxF9BcDt-yY?si=Kfq4qXiQ-eTu_k5o,"Quads, Glutes, Hamstrings",Intermediate,4
+Pistol Squats,"Single-leg exercise that improves strength, balance, and coordination.",None,Lower Body,https://www.youtube.com/watch?v=vq5-vdgJc0I,"Quads, Glutes, Core",Intermediate,5
+Russian Twist,"Enhances oblique strength and core stability, essential for rotational power in strikes.",Medicine Ball,Conditioning,https://youtu.be/Tau0hsW8iR0?si=XvjmRlIWv35jkpT2,"Core, Obliques",Beginner,4
+V Sit-Up,"Strengthens the entire core, improving balance and stability.",None,Conditioning,https://youtu.be/Wlw2Cyon-Ks?si=T60RdQrDPfvR3a3L,"Core, Hip Flexors",Beginner,3
+Body Kick,"Develops power and accuracy in body strikes, essential for effective attacks.",Bag,Bag Work,https://youtu.be/S2I5O92wXpI?si=Zw06T58JHjM6Vm5j,"Legs, Core",Beginner,6
+Hook Combo,"Develops power and accuracy in hook strikes, crucial for effective attacks.",Bag,Bag Work,https://youtu.be/HTts3Kk91ew?si=gz8WllpGIPP4eNfA,"Shoulders, Core",Beginner,5
+Intermediate Combo Mix,"Combines various strikes to develop power, speed, and coordination.",Bag,Bag Work,https://youtu.be/Acc7R4cr6F4?si=9b15LpNXj1P4YnMb,Full Body,Intermediate,5
+Advanced Combo Mix,"Combines complex strikes to develop advanced power, speed, and coordination.",Bag,Bag Work,https://youtu.be/eH2uTBGEFgM?si=vdfeZB25z_RJ_S3n,Full Body,Advanced,6
+Frog Pose,"Enhances hip flexibility and reduces tightness, crucial for effective kicks.",None,Flexibility,https://youtu.be/bxO4MK8YDWE?si=wqrPM3ew5Y5k-w8n,"Hips, Inner Thighs",Beginner,3
+Hip Mobility Drill,"Increases hip flexibility and mobility, essential for powerful and effective kicks.",None,Flexibility,https://youtube.com/shorts/fDC2KC1XqY8?si=IAMJzvIviFOo0m_G,"Hips, Glutes",Beginner,4

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Weekly Plan</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <a href="/logout" class="logout-link">Log Out</a>
+    <div class="container">
+        <h1>User Weekly Plan</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Day</th>
+                    <th>Workouts</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for day, workouts in weekly_plan.items() %}
+                <tr>
+                    <td>{{ day }}</td>
+                    <td>
+                        {% for workout in workouts %}
+                            {{ workout }}<br>
+                        {% endfor %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

@@ -1,10 +1,15 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, render_template, redirect, url_for, make_response
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
+from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity, set_access_cookies, unset_jwt_cookies
 from app.models import UserProfiles, UserPreferences
+import logging
+from app.recommendations import generate_weekly_plan
 
 #Blueprint organizes routes in a modular way.
 bp = Blueprint('main', __name__)
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
 
 #Default route
 @bp.route('/', methods=['GET'])
@@ -12,59 +17,28 @@ def index():
     return "Welcome to Nak Muay AI API"
 
 #Debugging route to check if user data can be extracted from mongodb
-@bp.route('/users', methods=['GET'])
-def get_users():
+@bp.route('/debug/users', methods=['GET'])
+def debug_users():
     try:
         users = UserProfiles.objects()
-        print(f"Found users: {users.count()}")  # Debugging: Print the count of users
-        for user in users:
-            print(user.to_json())  # Debugging: Print each user document
         users_json = users.to_json()
-        print(users_json)  # Debugging: Print the JSON serialization
-        return users_json
+        logging.info(f"Users: {users_json}")
+        return users_json, 200
     except Exception as e:
-        print(f"Error: {e}")  # Debugging: Print any errors
-        return jsonify({"error": str(e)}), 500
+        logging.error(f"Error fetching users: {e}")
+        return jsonify(message="Error fetching users"), 500
 
-@bp.route('/register', methods=['POST'])
-def register():
-    #Extracts json data entered by the user
-    data = request.get_json()
-    email = data['email']
-    username = data['username']
-
-    # Check if the email or username already exists
-    if UserProfiles.objects(email=email).first():
-        return jsonify(message="Email already exists"), 400
-    if UserProfiles.objects(username=username).first():
-        return jsonify(message="Username already exists"), 400
-
-    #Hashes the user-entered password
-    hashed_password = generate_password_hash(data['password'])
-
-    #Assigns user entered details to the database
-    new_user = UserProfiles(
-        email=email,
-        username=username,
-        password=hashed_password
-    )
-    new_user.save()
-
-    return jsonify(message="User registered successfully"), 201
-
-@bp.route('/login', methods=['POST'])
-def login():
-
-    #Retrieves json data entered by user
-    data = request.get_json()
-
-    #Looks the user up in the database then checks if the password matches,
-    #if it matches, a JWT token is generated.
-    user = UserProfiles.objects(email=data['email']).first()
-    if user and check_password_hash(user.password, data['password']):
-        access_token = create_access_token(identity=str(user.id))
-        return jsonify(access_token=access_token), 200
-    return jsonify(message="Invalid credentials"), 401
+#Debugging for prefences
+@bp.route('/debug/preferences', methods=['GET'])
+def debug_preferences():
+    try:
+        preferences = UserPreferences.objects()
+        preferences_json = preferences.to_json()
+        logging.info(f"Preferences: {preferences_json}")
+        return preferences_json, 200
+    except Exception as e:
+        logging.error(f"Error fetching preferences: {e}")
+        return jsonify(message="Error fetching preferences"), 500
 
 # test route to ensure jwt_required() fn works. Usually '@jwt_required()'
 # Will be included within protected routes.
@@ -73,6 +47,72 @@ def login():
 def protected():
     current_user = get_jwt_identity()
     return jsonify(logged_in_as=current_user), 200
+
+#Registering
+@bp.route('/register', methods=['GET', 'POST'])
+def register():
+    if request.method == 'GET':
+        return render_template('register.html')
+    if request.method == 'POST':
+        data = request.form
+        email = data.get('email')
+        username = data.get('username')
+        password = data.get('password')
+
+        existing_user_email = UserProfiles.objects(email=email).first()
+        existing_user_username = UserProfiles.objects(username=username).first()
+        
+        if existing_user_email:
+            return jsonify(message="Email already exists"), 400
+        if existing_user_username:
+            return jsonify(message="Username already exists"), 400
+
+        hashed_password = generate_password_hash(password)
+        new_user = UserProfiles(email=email, username=username, password=hashed_password)
+        new_user.save()
+
+        logging.info(f'New user saved: {new_user}')
+
+        workout_days = data.getlist('workoutDays')
+        
+        preferences = UserPreferences(
+            userID=new_user,
+            hasBarbell='hasBarbell' in data,
+            hasDumbbells='hasDumbbells' in data,
+            hasKettlebell='hasKettlebell' in data,
+            hasBag='hasBag' in data,
+            workoutDays=workout_days
+        )
+        preferences.save()
+
+        logging.info(f'User preferences saved: {preferences}')
+
+        access_token = create_access_token(identity=str(new_user.id))
+        response = make_response(redirect(url_for('main.landing')))
+        set_access_cookies(response, access_token)
+
+        return response
+
+#Logging in
+@bp.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'GET':
+        return render_template('login.html')
+    
+    if request.method == 'POST':
+        # Retrieves form data entered by user
+        email = request.form.get('email')
+        password = request.form.get('password')
+
+        # Looks the user up in the database then checks if the password matches,
+        # if it matches, a JWT token is generated.
+        user = UserProfiles.objects(email=email).first()
+        if user and check_password_hash(user.password, password):
+            access_token = create_access_token(identity=str(user.id))
+            response = make_response(render_template('landing.html'))
+            response.set_cookie('access_token_cookie', access_token, httponly=True)
+            return response
+        return jsonify(message="Invalid credentials"), 401
 
 #Method for logged in users to view their profile
 @bp.route('/user/profile', methods=['GET'])
@@ -116,24 +156,6 @@ def update_profile():
     user.save()
     return jsonify(message="Profile updated successfully"), 200
 
-#Method for registering users to add their preferences
-@bp.route('/user/preferences/add', methods=['POST'])
-@jwt_required()
-def add_preferences():
-    current_user = get_jwt_identity()
-    data = request.get_json()
-
-    preferences = UserPreferences(
-        userID=current_user,
-        hasBarbell=data['hasBarbell'],
-        hasDumbbells=data['hasDumbbells'],
-        hasKettlebell=data['hasKettlebell'],
-        hasBag=data['hasBag'],
-        workoutDays=data['workoutDays']
-    )
-    preferences.save()
-    return jsonify(message="Preferences added successfully"), 201
-
 #Method for users to view their preferences
 @bp.route('/user/preferences', methods=['GET'])
 @jwt_required()
@@ -163,3 +185,31 @@ def update_preferences():
     data = request.get_json()
     preferences.update(**data)
     return jsonify(message="Preferences updated successfully"), 200
+
+#Landing page
+@bp.route('/landing', methods=['GET'])
+def landing():
+    return render_template('landing.html')
+
+#logging out
+@bp.route('/logout', methods=['GET'])
+@jwt_required(locations=['cookies'])
+def logout():
+    response = redirect(url_for('main.login'))
+    unset_jwt_cookies(response)  # Clear the JWT cookies to log the user out
+    return response
+
+@bp.route('/weekly_plan', methods=['GET'])
+@jwt_required()
+def weekly_plan():
+    current_user = get_jwt_identity()
+    user = UserProfiles.objects(id=current_user).first()
+
+    if user:
+        weekly_plan = generate_weekly_plan(user.id)
+        if not weekly_plan:
+            return jsonify(message="Weekly plan generation failed"), 500
+
+        return render_template('weekly_plan.html', user=user, weekly_plan=weekly_plan)
+    else:
+        return jsonify(message="User not found"), 404

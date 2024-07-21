@@ -262,12 +262,11 @@ def generate_weekly_plan(user_id):
             else:
                 print(f"Workout {selected_workout} not found in WorkoutList")
 
-    return workout_plan
-
 #Retrieves the user's weekly training plan
 def fetch_weekly_plan(user_id):
     weekly_plan = {}
     training_plans = UserTrainingPlans.objects(userID=user_id)
+    
     for plan in training_plans:
         day_of_week = plan.dayOfWeek
         if day_of_week not in weekly_plan:
@@ -275,19 +274,12 @@ def fetch_weekly_plan(user_id):
 
         print(f"Processing plan: {plan.to_json()}")
         print(f"workoutID type: {type(plan.workoutID)}")
-
-        try:
-            workout_id = plan.workoutID
-            workout_obj = WorkoutList.objects(workoutID=workout_id).first()
-            if workout_obj:
-                weekly_plan[day_of_week].append(workout_obj.name)
-            else:
-                print(f"Workout with workoutID {workout_id} not found.")
-        except ValueError as ve:
-            print(f"Error converting workoutID to int: {ve}")
-        except WorkoutList.DoesNotExist:
-            print(f"Workout with workoutID {workout_id} does not exist in WorkoutList.")
-        except Exception as e:
-            print(f"Unexpected error fetching workout for workoutID: {plan.workoutID}. Error: {str(e)}")
-
+        
+        # Since workoutID is a ReferenceField, we can directly use it to fetch the workout object
+        workout_obj = plan.workoutID  # This is the referenced WorkoutList object
+        if workout_obj:
+            weekly_plan[day_of_week].append(workout_obj.name)
+        else:
+            print(f"Workout with workoutID {plan.workoutID} not found.")
+    
     return weekly_plan

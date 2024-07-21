@@ -3,18 +3,21 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity, set_access_cookies, unset_jwt_cookies
 from app.models import UserProfiles, UserPreferences
 import logging
-from app.recommendations import generate_weekly_plan
+from app.recommendations import *
 
 #Blueprint organizes routes in a modular way.
 bp = Blueprint('main', __name__)
 
+@bp.before_app_first_request
+def setup():
+    initialize()
+
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 
-#Default route
 @bp.route('/', methods=['GET'])
 def index():
-    return "Welcome to Nak Muay AI API"
+    return render_template('landing.html')
 
 #Debugging route to check if user data can be extracted from mongodb
 @bp.route('/debug/users', methods=['GET'])
@@ -206,10 +209,26 @@ def weekly_plan():
     user = UserProfiles.objects(id=current_user).first()
 
     if user:
-        weekly_plan = generate_weekly_plan(user.id)
+        weekly_plan = fetch_weekly_plan(user.id)
+        print(f"Weekly Plan: {weekly_plan}")  # Debugging statement
+
         if not weekly_plan:
-            return jsonify(message="Weekly plan generation failed"), 500
+            return jsonify(message="No weekly plan found"), 404
 
         return render_template('weekly_plan.html', user=user, weekly_plan=weekly_plan)
     else:
         return jsonify(message="User not found"), 404
+    
+@bp.route('/generate_new_plan', methods=['POST'])
+@jwt_required()
+def generate_new_plan():
+    current_user = get_jwt_identity()
+    user = UserProfiles.objects(id=current_user).first()
+    
+    if user:
+        generate_weekly_plan(user.id)  # Generate the plan, no need to return it here
+        return redirect(url_for('main.weekly_plan'))  # Redirect to the weekly_plan view
+    else:
+        return jsonify(message="User not found"), 404
+
+

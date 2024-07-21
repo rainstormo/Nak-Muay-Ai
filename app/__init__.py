@@ -2,6 +2,7 @@ from flask import Flask
 from flask_mongoengine import MongoEngine
 from flask_jwt_extended import JWTManager
 import logging
+from app.recommendations import initialize  # Import initialize function
 
 db = MongoEngine()
 
@@ -35,6 +36,9 @@ def create_app():
     db.init_app(app)
     
     print("MongoEngine initialized.")
+
+    # Initialize recommendations (ensure workouts_df is populated)
+    initialize()
     
     # Register the 'main' Blueprint from the routes file
     from .routes import bp as main_bp

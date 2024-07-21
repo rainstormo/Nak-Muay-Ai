@@ -5,11 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Weekly Plan</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            text-align: center;
+        }
+        .logout-link, .back-button, .generate-button {
+            margin: 20px;
+            text-decoration: none;
+            padding: 10px 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f0f0f0;
+            cursor: pointer;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+            color: #333;
+        }
+    </style>
 </head>
 <body>
     <a href="/logout" class="logout-link">Log Out</a>
     <div class="container">
         <h1>User Weekly Plan</h1>
+        <a href="/" class="back-button">Back to Landing Page</a>
+        <form action="/generate_new_plan" method="post">
+            <button type="submit" class="generate-button">Generate New Plan</button>
+        </form>
         <table>
             <thead>
                 <tr>
@@ -17,7 +57,7 @@
                     <th>Workouts</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="plan-body">
                 {% for day, workouts in weekly_plan.items() %}
                 <tr>
                     <td>{{ day }}</td>

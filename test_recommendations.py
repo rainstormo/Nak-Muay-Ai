@@ -62,18 +62,18 @@ app = create_app()
 #         print("User not found.")
 
 # #Testing weekly plan generator
-# with app.app_context():
-#     initialize()
-#     user = UserProfiles.objects(email="justin@rc.hotmail").first()
-#     if user:
-#         weekly_plan = generate_weekly_plan(user.id)
-#         print("Weekly Plan:", weekly_plan)
-#     else:
-#         print("User not found.")
+with app.app_context():
+    initialize()
+    user = UserProfiles.objects(email="justin@rc.hotmail").first()
+    if user:
+        weekly_plan = generate_weekly_plan(user.id)
+        print("Weekly Plan:", weekly_plan)
+    else:
+        print("User not found.")
 
 #Testing weekly plan outputter
 with app.app_context():
-    user = UserProfiles.objects(email="sammy@hotmail.com").first()
+    user = UserProfiles.objects(email="justin@rc.hotmail").first()
     if user:
         weekly_plan = fetch_weekly_plan(user.id)
         print("Weekly Plan:", weekly_plan)

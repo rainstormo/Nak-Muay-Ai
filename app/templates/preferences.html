@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nak Muay Coach - Update Preferences</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Nak Muay Coach</h1>
+        <div class="preferences-container">
+            <form id="preferences-form" method="POST" action="/update_preferences">
+                <h2>Update Your Preferences</h2>
+                
+                <div class="form-group">
+                    <label for="hasBarbell">Do you have a barbell?</label>
+                    <input type="checkbox" id="hasBarbell" name="hasBarbell" {% if user.hasBarbell %}checked{% endif %}>
+                </div>
+                <div class="form-group">
+                    <label for="hasDumbbells">Do you have dumbbells?</label>
+                    <input type="checkbox" id="hasDumbbells" name="hasDumbbells" {% if user.hasDumbbells %}checked{% endif %}>
+                </div>
+                <div class="form-group">
+                    <label for="hasKettlebell">Do you have kettlebells?</label>
+                    <input type="checkbox" id="hasKettlebell" name="hasKettlebell" {% if user.hasKettlebell %}checked{% endif %}>
+                </div>
+                <div class="form-group">
+                    <label for="hasBag">Do you have a punching bag?</label>
+                    <input type="checkbox" id="hasBag" name="hasBag" {% if user.hasBag %}checked{% endif %}>
+                </div>
+                <div class="form-group">
+                    <label for="workoutDays">Days you can workout:</label>
+                    <div class="workout-days">
+                        <label><input type="checkbox" name="workoutDays" value="Monday" {% if 'Monday' in user.workoutDays %}checked{% endif %}> Monday</label>
+                        <label><input type="checkbox" name="workoutDays" value="Tuesday" {% if 'Tuesday' in user.workoutDays %}checked{% endif %}> Tuesday</label>
+                        <label><input type="checkbox" name="workoutDays" value="Wednesday" {% if 'Wednesday' in user.workoutDays %}checked{% endif %}> Wednesday</label>
+                        <label><input type="checkbox" name="workoutDays" value="Thursday" {% if 'Thursday' in user.workoutDays %}checked{% endif %}> Thursday</label>
+                        <label><input type="checkbox" name="workoutDays" value="Friday" {% if 'Friday' in user.workoutDays %}checked{% endif %}> Friday</label>
+                        <label><input type="checkbox" name="workoutDays" value="Saturday" {% if 'Saturday' in user.workoutDays %}checked{% endif %}> Saturday</label>
+                        <label><input type="checkbox" name="workoutDays" value="Sunday" {% if 'Sunday' in user.workoutDays %}checked{% endif %}> Sunday</label>
+                    </div>
+                </div>
+                <button type="submit">Save Preferences</button>
+            </form>
+            <a href="/profile" class="profile-link">Back to Profile</a>
+        </div>
+    </div>
+</body>
+</html>

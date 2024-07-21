@@ -21,6 +21,9 @@ def create_app():
     # Set the JWT secret key
     app.config['JWT_SECRET_KEY'] = 'my_very_secret_key_for_jwt'
 
+    # Set the Flask secret key for session management
+    app.config['SECRET_KEY'] = 'your_very_secret_key'
+
     # Configure JWT to store tokens in cookies
     app.config['JWT_TOKEN_LOCATION'] = ['cookies']
     app.config['JWT_ACCESS_COOKIE_PATH'] = '/'

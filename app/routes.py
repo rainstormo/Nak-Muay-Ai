@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify, render_template, redirect, url_for, make_response
+from flask import Blueprint, request, jsonify, render_template, redirect, url_for, make_response, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity, set_access_cookies, unset_jwt_cookies
 from app.models import UserProfiles, UserPreferences
@@ -117,78 +117,6 @@ def login():
             return response
         return jsonify(message="Invalid credentials"), 401
 
-#Method for logged in users to view their profile
-@bp.route('/user/profile', methods=['GET'])
-@jwt_required()
-def get_profile():
-    current_user = get_jwt_identity()
-    user = UserProfiles.objects(id=current_user).first()
-    if not user:
-        return jsonify(message="User not found"), 404
-    return jsonify(
-        email=user.email,
-        username=user.username
-    ), 200
-
-#Allows logged-in users to update their profile information.
-@bp.route('/user/profile', methods=['POST'])
-@jwt_required()
-def update_profile():
-    current_user = get_jwt_identity()
-    user = UserProfiles.objects(id=current_user).first()
-
-    if not user:
-        return jsonify(message="User not found"), 404
-
-    data = request.get_json()
-
-    # Check if the username or email already exists
-    if 'username' in data and UserProfiles.objects(username=data['username']).first() and data['username'] != user.username:
-        return jsonify(message="Username already exists"), 400
-    if 'email' in data and UserProfiles.objects(email=data['email']).first() and data['email'] != user.email:
-        return jsonify(message="Email already exists"), 400
-    
-    # Update fields if they exist in the request data
-    if 'username' in data:
-        user.username = data['username']
-    if 'email' in data:
-        user.email = data['email']
-    if 'password' in data:
-        user.password = generate_password_hash(data['password'])
-
-    user.save()
-    return jsonify(message="Profile updated successfully"), 200
-
-#Method for users to view their preferences
-@bp.route('/user/preferences', methods=['GET'])
-@jwt_required()
-def get_preferences():
-    current_user = get_jwt_identity()
-    preferences = UserPreferences.objects(userID=current_user).first()
-    if not preferences:
-        return jsonify(message="Preferences not found"), 404
-    return jsonify(
-        hasBarbell=preferences.hasBarbell,
-        hasDumbbells=preferences.hasDumbbells,
-        hasKettlebell=preferences.hasKettlebell,
-        hasBag=preferences.hasBag,
-        workoutDays=preferences.workoutDays
-    ), 200
-
-#Allows logged-in users to update their equipment and workout day preferences.
-@bp.route('/user/preferences', methods=['POST'])
-@jwt_required()
-def update_preferences():
-    current_user = get_jwt_identity()
-    preferences = UserPreferences.objects(userID=current_user).first()
-
-    if not preferences:
-        return jsonify(message="Preferences not found"), 404
-
-    data = request.get_json()
-    preferences.update(**data)
-    return jsonify(message="Preferences updated successfully"), 200
-
 #Landing page
 @bp.route('/landing', methods=['GET'])
 def landing():
@@ -213,11 +141,12 @@ def weekly_plan():
         print(f"Weekly Plan: {weekly_plan}")  # Debugging statement
 
         if not weekly_plan:
-            return jsonify(message="No weekly plan found"), 404
+            weekly_plan = {}  # Provide an empty plan to indicate no plan available
 
         return render_template('weekly_plan.html', user=user, weekly_plan=weekly_plan)
     else:
         return jsonify(message="User not found"), 404
+
     
 @bp.route('/generate_new_plan', methods=['POST'])
 @jwt_required()
@@ -231,4 +160,69 @@ def generate_new_plan():
     else:
         return jsonify(message="User not found"), 404
 
+@bp.route('/preferences', methods=['GET'])
+@jwt_required()
+def view_preferences():
+    current_user_id = get_jwt_identity()  # Retrieve the user ID from JWT
+    user_profile = UserProfiles.objects(id=current_user_id).first()
 
+    if not user_profile:
+        flash('User not found.', 'danger')
+        return redirect(url_for('main.index'))
+
+    user_preferences = UserPreferences.objects(userID=user_profile).first()
+    
+    if not user_preferences:
+        user_preferences = UserPreferences(
+            userID=user_profile,
+            hasBarbell=False,
+            hasDumbbells=False,
+            hasKettlebell=False,
+            hasBag=False,
+            workoutDays=[]
+        )
+        user_preferences.save()
+
+    return render_template('preferences.html', user=user_preferences)
+
+@bp.route('/update_preferences', methods=['POST'])
+@jwt_required()
+def update_preferences():
+    current_user_id = get_jwt_identity()  # Retrieve the user ID from JWT
+    user_profile = UserProfiles.objects(id=current_user_id).first()
+
+    if not user_profile:
+        flash('User not found.', 'danger')
+        return redirect(url_for('main.index'))
+
+    # Retrieve user preferences from the form
+    hasBarbell = 'hasBarbell' in request.form
+    hasDumbbells = 'hasDumbbells' in request.form
+    hasKettlebell = 'hasKettlebell' in request.form
+    hasBag = 'hasBag' in request.form
+    workoutDays = request.form.getlist('workoutDays')
+
+    # Find existing preferences or create new ones
+    user_preferences = UserPreferences.objects(userID=user_profile).first()
+    
+    if user_preferences:
+        user_preferences.update(
+            hasBarbell=hasBarbell,
+            hasDumbbells=hasDumbbells,
+            hasKettlebell=hasKettlebell,
+            hasBag=hasBag,
+            workoutDays=workoutDays
+        )
+    else:
+        user_preferences = UserPreferences(
+            userID=user_profile,
+            hasBarbell=hasBarbell,
+            hasDumbbells=hasDumbbells,
+            hasKettlebell=hasKettlebell,
+            hasBag=hasBag,
+            workoutDays=workoutDays
+        )
+        user_preferences.save()
+
+    flash('Preferences updated successfully.', 'success')
+    return redirect(url_for('main.view_preferences'))

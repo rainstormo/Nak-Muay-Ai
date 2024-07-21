@@ -10,9 +10,8 @@
     <div class="container">
         <h1>Nak Muay Coach</h1>
         <div class="preferences-container">
-            <form id="preferences-form" method="POST" action="/update_preferences">
-                <h2>Update Your Preferences</h2>
-                
+            <h2>Update Your Preferences</h2>
+            <form id="preferences-form" method="POST" action="{{ url_for('main.update_preferences') }}">
                 <div class="form-group">
                     <label for="hasBarbell">Do you have a barbell?</label>
                     <input type="checkbox" id="hasBarbell" name="hasBarbell" {% if user.hasBarbell %}checked{% endif %}>
@@ -30,7 +29,7 @@
                     <input type="checkbox" id="hasBag" name="hasBag" {% if user.hasBag %}checked{% endif %}>
                 </div>
                 <div class="form-group">
-                    <label for="workoutDays">Days you can workout:</label>
+                    <label>Days you can workout:</label>
                     <div class="workout-days">
                         <label><input type="checkbox" name="workoutDays" value="Monday" {% if 'Monday' in user.workoutDays %}checked{% endif %}> Monday</label>
                         <label><input type="checkbox" name="workoutDays" value="Tuesday" {% if 'Tuesday' in user.workoutDays %}checked{% endif %}> Tuesday</label>
@@ -43,7 +42,7 @@
                 </div>
                 <button type="submit">Save Preferences</button>
             </form>
-            <a href="/profile" class="profile-link">Back to Profile</a>
+            <a href="{{ url_for('main.landing') }}" class="button">Go Back</a>
         </div>
     </div>
 </body>

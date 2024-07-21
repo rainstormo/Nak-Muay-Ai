@@ -14,14 +14,21 @@
             margin: auto;
             text-align: center;
         }
-        .logout-link, .back-button, .generate-button {
+        .logout-link, .button {
             margin: 20px;
             text-decoration: none;
-            padding: 10px 20px;
-            border: 1px solid #ccc;
+            padding: 12px;
+            background-color: #00ffcc;
+            color: #000;
+            border: none;
             border-radius: 5px;
-            background-color: #f0f0f0;
             cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        .button:hover {
+            background-color: #00cc99;
         }
         h1 {
             margin-bottom: 20px;
@@ -40,16 +47,15 @@
             background-color: #f4f4f4;
             color: #333;
         }
+        .button-container {
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
     <a href="/logout" class="logout-link">Log Out</a>
     <div class="container">
         <h1>User Weekly Plan</h1>
-        <a href="/" class="back-button">Back to Landing Page</a>
-        <form action="/generate_new_plan" method="post">
-            <button type="submit" class="generate-button">Generate New Plan</button>
-        </form>
         <table>
             <thead>
                 <tr>
@@ -70,6 +76,12 @@
                 {% endfor %}
             </tbody>
         </table>
+        <div class="button-container">
+            <form action="/generate_new_plan" method="post">
+                <button type="submit" class="button">Generate New Plan</button>
+            </form>
+            <a href="/" class="button">Go Back</a>
+        </div>
     </div>
 </body>
 </html>

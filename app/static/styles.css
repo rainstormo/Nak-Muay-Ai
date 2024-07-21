@@ -83,6 +83,26 @@ button:hover {
     background-color: #00cc99;
 }
 
+a.button {
+    display: inline-block; /* Ensures the link behaves like a block-level element */
+    width: auto; /* Adjust width to fit the content */
+    padding: 12px;
+    background-color: #00ffcc;
+    color: #000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none; /* Removes underline from link */
+    transition: background-color 0.3s ease;
+    margin-top: 8px;
+}
+
+a.button:hover {
+    background-color: #00cc99;
+}
+
 .login-link, .register-link {
     display: block;
     margin-top: 20px;

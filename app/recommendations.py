@@ -121,7 +121,6 @@ def assign_workout_types(available_days):
 
     return type_schedule
 
-#Creates matrix in preparation for KNN model
 def create_user_item_matrix(user_id):
     refined_workouts, _ = refine_workouts_for_user(user_id)
     if not refined_workouts:
@@ -133,14 +132,14 @@ def create_user_item_matrix(user_id):
     user_weightings = list(UserWeightings.objects(userID=user_id))
 
     # Filter user weightings based on refined workout names
-    user_weightings = [w for w in user_weightings if w.workoutID.name in refined_workout_names]
+    user_weightings = [w for w in user_weightings if str(w.workoutID) in refined_workout_names]
 
     if not user_weightings:
         user_weightings_df = pd.DataFrame(columns=['userID', 'workoutID', 'weighting'])
     else:
         user_weightings_df = pd.DataFrame([{
             'userID': str(w.userID.id),
-            'workoutID': w.workoutID.name,
+            'workoutID': str(w.workoutID),  # Ensure workoutID is treated as a string
             'weighting': w.weighting
         } for w in user_weightings])
 
@@ -172,6 +171,7 @@ def create_user_item_matrix(user_id):
     user_item_matrix = filtered_weightings_df.pivot(index='userID', columns='workoutID', values='weighting').fillna(0)
     
     return user_item_matrix
+
 
 #Uses KNN to recommend workouts
 def recommend_workouts_knn(user_id, n_neighbors=5):
@@ -210,7 +210,6 @@ def weighted_random_choice(workouts, weights):
         upto += weight
     return workouts[-1]  # Fallback in case of rounding errors
 
-#Generates a fresh weekly training plan for the user
 def generate_weekly_plan(user_id):
     # Fetch user preferences
     user_preferences = UserPreferences.objects(userID=user_id).first()
@@ -227,7 +226,7 @@ def generate_weekly_plan(user_id):
     # Assign workout types to available days
     type_schedule = assign_workout_types(available_days)
 
-     # Delete existing plans for the user
+    # Delete existing plans for the user
     UserTrainingPlans.objects(userID=user_id).delete()
 
     # Map recommended workouts to workout types
@@ -250,17 +249,22 @@ def generate_weekly_plan(user_id):
 
             # Debugging prints
             print(f"Selected Workout: {selected_workout}")
+            # Ensure the workout is retrieved correctly by name
             workout_obj = WorkoutList.objects(name=selected_workout).first()
             if workout_obj:
                 print(f"Workout Object: {workout_obj}")
                 user_training_plan = UserTrainingPlans(
                     userID=user_id,
-                    workoutID=workout_obj.id,
+                    workoutID=workout_obj.workoutID,  # Use workoutID which is an integer
                     dayOfWeek=day
                 )
                 user_training_plan.save()
             else:
                 print(f"Workout {selected_workout} not found in WorkoutList")
+
+    return workout_plan
+
+
 
 #Retrieves the user's weekly training plan
 def fetch_weekly_plan(user_id):
@@ -276,7 +280,7 @@ def fetch_weekly_plan(user_id):
         print(f"workoutID type: {type(plan.workoutID)}")
         
         # Since workoutID is a ReferenceField, we can directly use it to fetch the workout object
-        workout_obj = plan.workoutID  # This is the referenced WorkoutList object
+        workout_obj = WorkoutList.objects(workoutID=plan.workoutID).first()  # This is the referenced WorkoutList object
         if workout_obj:
             weekly_plan[day_of_week].append(workout_obj.name)
         else:

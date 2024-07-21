@@ -32,7 +32,7 @@ class PerformanceHistory(Document):
 class UserTrainingPlans(Document):
     meta = {'collection': 'UserTrainingPlans'}
     userID = ReferenceField(UserProfiles, required=True)
-    workoutID = ReferenceField('WorkoutList', required=True)
+    workoutID = IntField(required=True)
     dayOfWeek = StringField(required=True)
     sets = IntField()
     reps = IntField()
@@ -54,5 +54,5 @@ class WorkoutList(Document):
 class UserWeightings(Document):
     meta = {'collection': 'UserWeightings'}
     userID = ReferenceField(UserProfiles, required=True)
-    workoutID = ReferenceField('WorkoutList', required=True)
+    workoutID = IntField(required=True)
     weighting = IntField(required=True)

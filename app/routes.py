@@ -146,8 +146,7 @@ def weekly_plan():
         return render_template('weekly_plan.html', user=user, weekly_plan=weekly_plan)
     else:
         return jsonify(message="User not found"), 404
-
-    
+   
 @bp.route('/generate_new_plan', methods=['POST'])
 @jwt_required()
 def generate_new_plan():
@@ -226,3 +225,96 @@ def update_preferences():
 
     flash('Preferences updated successfully.', 'success')
     return redirect(url_for('main.view_preferences'))
+
+@bp.route('/begin_training_day', methods=['GET'])
+@jwt_required()
+def begin_training_day():
+    current_user = get_jwt_identity()
+    user = UserProfiles.objects(id=current_user).first()
+
+    if user:
+        # Fetch the user's training plan
+        user_training_plan = UserTrainingPlans.objects(userID=user.id).order_by('dayOfWeek').first()
+
+        if not user_training_plan:
+            return render_template('begin_training_day.html', user=user, workouts=[], message="No training plan found. Please generate a plan.")
+
+        # Determine the first training day
+        first_training_day = user_training_plan.dayOfWeek
+
+        # Fetch all workouts for the first training day
+        workouts = UserTrainingPlans.objects(userID=user.id, dayOfWeek=first_training_day)
+        workout_details = []
+
+        for workout in workouts:
+            # Fetch workout information by integer workoutID
+            workout_info = WorkoutList.objects(workoutID=workout.workoutID).first()
+            if workout_info:
+                # Fetch user's personal weighting or use default if none exists
+                user_weighting = UserWeightings.objects(userID=user.id, workoutID=workout.workoutID).first()
+                weighting = user_weighting.weighting if user_weighting else workout_info.defaultWeighting
+
+                workout_details.append({
+                    'name': workout_info.name,
+                    'description': workout_info.description,
+                    'videoLink': workout_info.videoLink,
+                    'workoutID': workout_info.workoutID,
+                    'weighting': weighting
+                })
+
+        return render_template('begin_training_day.html', user=user, workouts=workout_details, message=None)
+    else:
+        return jsonify(message="User not found"), 404
+
+@bp.route('/update_weighting', methods=['POST'])
+@jwt_required()
+def update_weighting():
+    current_user_id = get_jwt_identity()
+    workout_id = request.form.get('workoutID')
+    action = request.form.get('action')
+
+    # Validate inputs
+    if not workout_id or action not in ['increase', 'decrease']:
+        return redirect(url_for('main.begin_training_day', message="Invalid input: workoutID or action missing or incorrect"))
+
+    # Convert workout_id to int
+    try:
+        workout_id = int(workout_id)
+    except ValueError:
+        return redirect(url_for('main.begin_training_day', message="Invalid workout ID"))
+
+    # Determine increment/decrement value
+    increment = 1 if action == 'increase' else -1
+
+    # Fetch or create the UserWeighting document
+    user_weighting = UserWeightings.objects(userID=current_user_id, workoutID=workout_id).first()
+    if user_weighting:
+        # Update existing weighting
+        new_weighting = max(0, user_weighting.weighting + increment)  # Ensure weighting doesn't go below 0
+        user_weighting.weighting = new_weighting
+        user_weighting.save()
+    else:
+        # Create new weighting if it doesn't exist
+        new_weighting = max(0, increment)  # If not existing, initialize with increment
+        user_weighting = UserWeightings(userID=current_user_id, workoutID=workout_id, weighting=new_weighting)
+        user_weighting.save()
+
+    return redirect(url_for('main.begin_training_day'))  # Redirect to the page showing workouts
+
+@bp.route('/complete_day', methods=['POST'])
+@jwt_required()
+def complete_day():
+    current_user_id = get_jwt_identity()
+
+    # Fetch the user's training plan
+    user_training_plan = UserTrainingPlans.objects(userID=current_user_id).order_by('dayOfWeek').first()
+
+    if not user_training_plan:
+        return jsonify(message="No training plan found."), 404
+
+    # Remove the current day from the user's training plan
+    user_training_plan.delete()
+
+    # Redirect to the landing page
+    return redirect(url_for('main.landing'))
+

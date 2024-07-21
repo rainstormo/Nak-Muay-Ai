@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Begin Training Day</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            text-align: center;
+        }
+        .logout-link, .button {
+            margin: 20px;
+            text-decoration: none;
+            padding: 12px;
+            background-color: #00ffcc;
+            color: #000;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        .button:hover {
+            background-color: #00cc99;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        .workout {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            position: relative;
+        }
+        .workout h2 {
+            margin-bottom: 10px;
+        }
+        .workout p {
+            margin-bottom: 10px;
+        }
+        .like-dislike-buttons {
+            margin-top: 10px;
+        }
+        .like-dislike-buttons form {
+            display: inline;
+        }
+        .like-dislike-buttons button {
+            padding: 10px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .like-button {
+            background-color: #4CAF50; /* Green */
+            color: white;
+        }
+        .dislike-button {
+            background-color: #f44336; /* Red */
+            color: white;
+        }
+        .like-button:hover {
+            background-color: #45a049;
+        }
+        .dislike-button:hover {
+            background-color: #e7352e;
+        }
+    </style>
+</head>
+<body>
+    <a href="/logout" class="logout-link">Log Out</a>
+    <div class="container">
+        <h1>Begin Training Day</h1>
+        {% if message %}
+            <p>{{ message }}</p>
+        {% else %}
+            {% if workouts %}
+                {% for workout in workouts %}
+                    <div class="workout">
+                        <h2>{{ workout.name }}</h2>
+                        <p>{{ workout.description }}</p>
+                        {% if workout.videoLink %}
+                            <a href="{{ workout.videoLink }}" target="_blank">Watch Video</a>
+                        {% endif %}
+                        <p>Current Weighting: {{ workout.weighting }}</p>
+                        <div class="like-dislike-buttons">
+                            <form action="{{ url_for('main.update_weighting') }}" method="post" style="display: inline;">
+                                <input type="hidden" name="workoutID" value="{{ workout.workoutID }}">
+                                <input type="hidden" name="action" value="increase">
+                                <button type="submit" class="like-button">Like</button>
+                            </form>
+                            <form action="{{ url_for('main.update_weighting') }}" method="post" style="display: inline;">
+                                <input type="hidden" name="workoutID" value="{{ workout.workoutID }}">
+                                <input type="hidden" name="action" value="decrease">
+                                <button type="submit" class="dislike-button">Dislike</button>
+                            </form>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No workouts available for this training day.</p>
+            {% endif %}
+        {% endif %}
+        <form action="{{ url_for('main.complete_day') }}" method="post">
+            <button type="submit" class="button">Complete Day</button>
+        </form>
+        <div class="button-container">
+            <a href="/" class="button">Go Back</a>
+        </div>
+    </div>
+</body>
+</html>

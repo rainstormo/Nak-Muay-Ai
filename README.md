@@ -1,5 +1,28 @@
-![Screenshot 2024-09-04 103710](https://github.com/user-attachments/assets/3ff6497b-4696-4472-9a03-95bf04b5575a)
-![Screenshot 2024-09-04 103921](https://github.com/user-attachments/assets/17c3da00-4741-41db-87a8-497166b660b9)
-![Screenshot 2024-09-04 103945](https://github.com/user-attachments/assets/a532f530-8d02-438a-b955-e308f092ea76)
-![Screenshot 2024-09-04 104023](https://github.com/user-attachments/assets/7bde962e-400a-4b9c-aedd-9e6691e849ec)
-![Screenshot 2024-09-04 104100](https://github.com/user-attachments/assets/1e3238fe-8f8e-4803-8e8c-ce79877219c6)
+# Application Overview
+This Muay Thai coaching app is created to help users improve their Muay Thai training by providing personalized workout plans. Users can input their training preferences, available equipment, and which days they can train. Based on this information, the app generates a weekly training plan tailored to their needs.
+
+The app uses a recommendation system that learns from user performance and preferences to suggest the best exercises. This ensures that the workouts are effective and suited to the user’s goals and abilities.
+The backend of the app is built using Flask, and the data is stored in MongoDB. This combination allows for efficient data handling and scalable performance.
+
+Nak Muay AI aims to make training more effective and enjoyable by providing customized workout plans and tracking progress over time.
+
+
+## Home Screen
+![Home Screen](https://github.com/user-attachments/assets/3ff6497b-4696-4472-9a03-95bf04b5575a)  
+*Description*: The Home Screen provides users with an overview of the app's main features and navigation options.
+
+## Registration
+![Registration](https://github.com/user-attachments/assets/17c3da00-4741-41db-87a8-497166b660b9)  
+*Description*: The Registration screen allows new users to create an account by providing their details.
+
+## Login
+![Login](https://github.com/user-attachments/assets/a532f530-8d02-438a-b955-e308f092ea76)  
+*Description*: The Login screen enables returning users to access their accounts.
+
+## Generating Plan
+![Generating Plan](https://github.com/user-attachments/assets/7bde962e-400a-4b9c-aedd-9e6691e849ec)  
+*Description*: This screen lets users generate a personalized training plan based on their preferences.
+
+## Training Screen
+![Training Screen](https://github.com/user-attachments/assets/1e3238fe-8f8e-4803-8e8c-ce79877219c6)  
+*Description*: The Training screen provides a detailed view of the user's current workout plan, with options to track progress.

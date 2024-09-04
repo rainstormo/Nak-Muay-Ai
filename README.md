@@ -2,10 +2,7 @@
 This Muay Thai coaching app is created to help users improve their Muay Thai training by providing personalized workout plans. Users can input their training preferences, available equipment, and which days they can train. Based on this information, the app generates a weekly training plan tailored to their needs.
 
 The app uses a recommendation system that learns from user performance and preferences to suggest the best exercises. This ensures that the workouts are effective and suited to the user’s goals and abilities.
-The backend of the app is built using Flask, and the data is stored in MongoDB. This combination allows for efficient data handling and scalable performance.
-
-Nak Muay AI aims to make training more effective and enjoyable by providing customized workout plans and tracking progress over time.
-
+The backend of the app is built using Flask, and the data is stored in MongoDB.
 
 ## Home Screen
 ![Home Screen](https://github.com/user-attachments/assets/3ff6497b-4696-4472-9a03-95bf04b5575a)  

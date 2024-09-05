@@ -5,7 +5,7 @@ Users can input their training, equipment, day preferences and exercise-specific
 
 This is achieved through user-specific weightings of each filtered exercise which can be changed via direct user-feedback and a KNN model for group-matching. Exercises are filtered and balanced by preferences, musclegroups, equipment requirements and type to ensure each training day contains a consistent set of workouts and different types of workouts are spread in a given week.
 
-The backend is built using Flask and MongoDb is used for the database. 
+The backend is built using Flask and MongoDB is used for the database. 
 
 ## Home Screen
 ![Home Screen](https://github.com/user-attachments/assets/3ff6497b-4696-4472-9a03-95bf04b5575a)  

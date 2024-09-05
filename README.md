@@ -9,7 +9,7 @@ The backend is built using Flask and MongoDb is used for the database.
 
 ## Home Screen
 ![Home Screen](https://github.com/user-attachments/assets/3ff6497b-4696-4472-9a03-95bf04b5575a)  
-*Description*: The Home Screen provides users with an overview of the app's main features and navigation options.
+*Description*: The Home Screen provides users with an overview of the main features.
 
 ## Registration
 ![Registration](https://github.com/user-attachments/assets/17c3da00-4741-41db-87a8-497166b660b9)  
@@ -25,7 +25,7 @@ The backend is built using Flask and MongoDb is used for the database.
 
 ## Training Screen
 ![Training Screen](https://github.com/user-attachments/assets/1e3238fe-8f8e-4803-8e8c-ce79877219c6)  
-*Description*: The Training screen provides a detailed view of the user's current workout plan, with options to track progress.
+*Description*: The Training screen provides a detailed view of the user's current workout day.
 
 
 A literary review was done on the current use of AI in Muay Thai or similiar, it can be found here: [Artificial.Intelligence.for.Muay.Thai.-.Literature.Review.pdf](https://github.com/user-attachments/files/16882821/Artificial.Intelligence.for.Muay.Thai.-.Literature.Review.pdf)

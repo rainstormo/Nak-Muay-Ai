@@ -24,7 +24,8 @@ The backend of the app is built using Flask, and the data is stored in MongoDB.
 ![Training Screen](https://github.com/user-attachments/assets/1e3238fe-8f8e-4803-8e8c-ce79877219c6)  
 *Description*: The Training screen provides a detailed view of the user's current workout plan, with options to track progress.
 
-A literary review was done on the current use of AI in Muay Thai or similiar, it can be found here: [Artificial Intelligence for Muay Thai - Literature Review.pdf](https://github.com/user-attachments/files/16882779/Artificial.Intelligence.for.Muay.Thai.-.Literature.Review.pdf)
+
+A literary review was done on the current use of AI in Muay Thai or similiar, it can be found here: [Artificial Intelligence for Muay Thai - Literature Review (1).pdf](https://github.com/user-attachments/files/16882809/Artificial.Intelligence.for.Muay.Thai.-.Literature.Review.1.pdf)
 
 Documentation covering the methods, results and discussions can be found here: [Machine learning for Muay Thai - Results.pdf](https://github.com/user-attachments/files/16882786/Machine.learning.for.Muay.Thai.-.Results.pdf)
 

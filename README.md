@@ -1,8 +1,7 @@
 # Application Overview
 This Muay Thai coaching app is created to help users improve their Muay Thai training by providing personalized workout plans. Users can input their training preferences, available equipment, and which days they can train. Based on this information, the app generates a weekly training plan tailored to their needs.
 
-A recommendation system is used that learns from user performance and preferences to suggest the best exercises. This ensures that the workouts are effective and suited to the user’s goals and abilities.
-The backend of the app is built using Flask, and the data is stored in MongoDB.
+The backend is built using Flask, and the data is stored in MongoDB. A recommendation system is used that learns from user feedback and preferences to generate weekly workout plans. This is done through the use of unique weightings based on feedback and a KNN model.
 
 ## Home Screen
 ![Home Screen](https://github.com/user-attachments/assets/3ff6497b-4696-4472-9a03-95bf04b5575a)  
